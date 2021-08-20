@@ -80,9 +80,11 @@ def score(row, str_name):
     str_points = Label(window, text=int_points, font=('System', 7))
     str_points.grid(column=1, row=row+2)
     ## Кнопачки
-    btn_one = Button(window, text='-', command=score_btn(action='-', int_points=int_points, str_points=str_points, bonus_points=bonus_points), font=('System', 7))
+    minus = lambda: score_btn(action='-', int_points=int_points, str_points=str_points, bonus_points=bonus_points)
+    plus = lambda: score_btn(action='+', int_points=int_points, str_points=str_points, bonus_points=bonus_points)
+    btn_one = Button(window, text='-', command=minus,font=('System', 7))
+    btn_two = Button(window, text='+', command=plus,font=('System', 7))
     btn_one.grid(column=0, row=row+2)
-    btn_two = Button(window, text='+', command=score_btn(action='+', int_points=int_points, str_points=str_points, bonus_points=bonus_points), font=('System', 7))
     btn_two.grid(column=2, row=row+2)
 
 def stats(names):
