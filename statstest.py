@@ -5,10 +5,6 @@ window = Tk()
 window.title('Stats')
 window.geometry('150x550')
 
-def bonus_calc(int_points):
-    new_bonus_points = "[ {:+} ]".format(int_points // 2 - 5)
-    return new_bonus_points
-
 def score(column, row, str_name):
     int_points = 1
     ##  Название
@@ -29,17 +25,12 @@ def score(column, row, str_name):
         elif action == '-':
             if int_points > 1:
                 int_points -= 1
-        else:
-            raise SyntaxError
         str_points.configure(text=int_points)
-        bonus_points.configure(text=bonus_calc(int_points=int_points))
-    
-    minus = lambda: score_btn(action='-')
-    plus = lambda: score_btn(action='+')
-    btn_one = Button(window, text='-', command=minus, font=('System', 7))
-    btn_two = Button(window, text='+', command=plus, font=('System', 7))
-    btn_one.grid(column=column, row=row+2)
-    btn_two.grid(column=column+2, row=row+2)
+        bonus_points.configure(text=f"[ {int_points // 2 - 5} ]")
+    minus_btn = Button(window, text='-', command=lambda: score_btn(action='-'), font=('System', 7))
+    minus_btn.grid(column=column, row=row+2)
+    plus_btn = Button(window, text='+', command=lambda: score_btn(action='+'), font=('System', 7))
+    plus_btn.grid(column=column+2, row=row+2)
 
 def stats(column, row, names):
     for str_name in names:
